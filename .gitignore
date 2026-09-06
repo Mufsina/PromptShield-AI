@@ -1,0 +1,23 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# Raw and processed datasets
+data/raw/
+data/processed/
+
+# Saved models
+models_saved/
+
+# Experiment results
+experiments/
+results/
