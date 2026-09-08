@@ -11,13 +11,25 @@ __pycache__/
 # Environment variables
 .env
 
-# Raw and processed datasets
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Datasets
 data/raw/
 data/processed/
 
 # Saved models
 models_saved/
 
-# Experiment results
+# Experiments and results
 experiments/
 results/
+
+# Python build files
+*.egg-info/
+dist/
+build/
