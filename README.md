@@ -1,9 +1,5 @@
 # PromptShield-AI
 
-An Explainable Hybrid AI Framework for Detecting and Mitigating Direct and Indirect Prompt Injection Attacks in Retrieval-Augmented LLM Agents.
-
-## Research Project
-
 **Title:**  
 An Explainable Hybrid AI Framework for Detecting and Mitigating Direct and Indirect Prompt Injection Attacks in Retrieval-Augmented LLM Agents
 
