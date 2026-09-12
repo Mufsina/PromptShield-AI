@@ -29,9 +29,30 @@ jobs:
       - name: Start FastAPI server
         run: |
           uvicorn deployment.app:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
-          sleep 5
-          cat server.log
+          SERVER_PID=$!
 
+          echo "Waiting for FastAPI server..."
+
+          for i in {1..30}; do
+            if curl -s http://127.0.0.1:8000/health > /dev/null; then
+              echo "FastAPI server is running!"
+              break
+            fi
+
+            if ! kill -0 $SERVER_PID 2>/dev/null; then
+              echo "FastAPI server stopped unexpectedly."
+              cat server.log
+              exit 1
+            fi
+
+            sleep 1
+          done
+
+          if ! curl -s http://127.0.0.1:8000/health > /dev/null; then
+            echo "FastAPI server failed to start."
+            cat server.log
+            exit 1
+          fi
       - name: Run API tests
         run: |
           pytest tests/test_api.py -v
