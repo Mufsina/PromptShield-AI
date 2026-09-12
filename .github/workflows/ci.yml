@@ -1,4 +1,4 @@
-name: PromptShield-AI CI
+﻿name: PromptShield-AI CI
 
 on:
   push:
