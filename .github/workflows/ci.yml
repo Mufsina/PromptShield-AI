@@ -25,11 +25,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-ci.txt
+
       - name: Check application import
         run: |
           python -c "from deployment.app import app; print('Application import successful')"
 
-            - name: Start FastAPI server
+      - name: Start FastAPI server
         run: |
           python -m uvicorn deployment.app:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
           SERVER_PID=$!
@@ -56,6 +57,7 @@ jobs:
             cat server.log
             exit 1
           fi
+
       - name: Run API tests
         run: |
           pytest tests/test_api.py -v
