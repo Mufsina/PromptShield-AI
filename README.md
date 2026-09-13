@@ -1,17 +1,20 @@
 # PromptShield-AI
 
-## An Explainable Hybrid AI Framework for Detecting and Mitigating Prompt Injection Attacks in Retrieval-Augmented LLM Agents
+An Explainable Hybrid AI Framework for Detecting and Mitigating Direct and Indirect Prompt Injection Attacks in Retrieval-Augmented LLM Agents.
 
-![Python](https://img.shields.io/badge/Python-3.10-blue)
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-SVM%20%7C%20TF--IDF-orange)
-![Security](https://img.shields.io/badge/Application-LLM%20Security-red)
-![Status](https://img.shields.io/badge/Research-Active-green)
+## Research Project
+
+**Title:**  
+An Explainable Hybrid AI Framework for Detecting and Mitigating Direct and Indirect Prompt Injection Attacks in Retrieval-Augmented LLM Agents
+
+**Repository:**  
+https://github.com/Mufsina/PromptShield-AI
 
 ---
 
-## Abstract
+## Overview
 
-Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) systems are vulnerable to prompt injection attacks, where malicious instructions attempt to manipulate model behavior, bypass restrictions, or extract sensitive information.
+Prompt injection is a security threat where malicious or carefully crafted instructions attempt to manipulate an AI system into ignoring its intended instructions or revealing protected information.
 
 This project presents **PromptShield-AI**, an explainable hybrid defense framework that combines:
 
@@ -327,13 +330,35 @@ Future improvements include:
 
 Larger multilingual prompt injection datasets
 Transformer-based classifiers
-Retrieval-Augmented Generation attack simulation
-Real-time LLM gateway integration
-Advanced explainability methods (SHAP/LIME)
+More advanced semantic detection
+Improved indirect prompt injection detection
+Retrieval-aware attack detection
+LLM-based secondary verification
+More extensive adversarial testing
+Production-scale API deployment
+Real-time monitoring and logging
+Expanded explainability methods
+Research Contribution
 
-Author
-Sonia Akther Mufsina
-Research Project: PromptShield-AI
+PromptShield-AI demonstrates how a hybrid approach can combine deterministic security rules with machine-learning classification to improve prompt injection detection.
 
+The final Hybrid Defense V2 achieved an F1 score of 90.91% and 96.67% accuracy on the evaluated test set, outperforming the standalone SVM + TF-IDF baseline.
 
-Topic: Explainable Hybrid AI Framework for Detecting and Mitigating Direct and Indirect Prompt Injection Attacks in Retrieval-Augmented LLM Agents
+The framework also emphasizes explainability by exposing the signals contributing to each security decision.
+
+Status
+
+Research Prototype — Hybrid Defense V2
+
+Current status:
+
+Dataset preparation: Complete
+Baseline ML model: Complete
+Rule-based detector: Complete
+Hybrid Defense V2: Complete
+Error analysis: Complete
+Final evaluation: Complete
+FastAPI deployment: Complete
+API tests: Complete
+GitHub Actions CI: Complete
+Research documentation: In progress
