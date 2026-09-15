@@ -2,6 +2,8 @@
 
 An Explainable Hybrid AI Framework for Detecting and Mitigating Direct and Indirect Prompt Injection Attacks in Retrieval-Augmented LLM Agents.
 
+---
+
 ## Research Project
 
 **Title:**  
@@ -12,60 +14,66 @@ https://github.com/Mufsina/PromptShield-AI
 
 ---
 
-## Overview
+# Overview
 
-Prompt injection is a security threat where malicious or carefully crafted instructions attempt to manipulate an AI system into ignoring its intended instructions or revealing protected information.
+Large Language Models (LLMs) are increasingly integrated into AI agents, chatbots, and Retrieval-Augmented Generation (RAG) systems. However, their natural language instruction-following capability introduces security risks such as prompt injection attacks.
 
-This project presents **PromptShield-AI**, an explainable hybrid defense framework that combines:
+Prompt injection attacks attempt to manipulate AI systems by injecting malicious instructions that override intended behavior, extract sensitive information, or influence AI decisions.
+
+**PromptShield-AI** is an explainable hybrid defense framework that combines:
 
 - Machine Learning-based prompt injection detection
 - Rule-based security pattern analysis
 - Hybrid decision-making
-- Human-readable explanations
+- Human-readable security explanations
 
-The objective is to improve prompt injection detection while providing transparency behind every security decision.
+The objective of this research prototype is to improve prompt injection detection while providing transparent explanations behind each security decision.
 
 ---
 
-# Research Objective
+# Research Objectives
 
 The main objectives of this research are:
 
 1. Detect direct and indirect prompt injection attacks.
 2. Develop a hybrid AI defense mechanism combining ML and rule-based approaches.
-3. Evaluate model performance using standard classification metrics.
+3. Evaluate detection performance using machine learning metrics.
 4. Provide explainable security decisions for human analysis.
 
 ---
 
 # System Architecture
-                User Prompt
-                     |
-                     v
-          Text Preprocessing
-                     |
-          +----------+----------+
-          |                     |
-          v                     v
-    TF-IDF Feature        Rule-Based
-    Extraction            Detection
-          |                     |
-          v                     |
-       SVM Model               |
-          |                     |
-          +----------+----------+
-                     |
-                     v
-          Hybrid Decision Layer
-                     |
-                     v
-      ALLOW / REVIEW / BLOCK
-                     |
-                     v
-         Explainability Module
-                     |
-                     v
-          Human-readable Reason
+
+
+             User Prompt
+                  |
+                  v
+        Text Preprocessing
+                  |
+      +-----------+-----------+
+      |                       |
+      v                       v
+
+TF-IDF Feature Rule-Based
+Extraction Detection
+| |
+v |
+SVM Model |
+| |
++-----------+-----------+
+|
+v
+Hybrid Decision Layer
+|
+v
+ALLOW / REVIEW / BLOCK
+|
+v
+Explanation Module
+|
+v
+Human-readable Security Reason
+
 
 ---
 
@@ -77,18 +85,18 @@ Original dataset:
 
 - Total samples: 598
 
-Duplicate removal:
+After duplicate removal:
 
 - Unique samples: 299
 
-Class distribution:
+## Class Distribution
 
 | Label | Description | Samples |
 |------|-------------|---------|
 | 0 | Safe Prompt | 246 |
 | 1 | Prompt Injection | 53 |
 
-Dataset split:
+## Dataset Split
 
 | Split | Samples |
 |------|---------|
@@ -112,7 +120,7 @@ Text prompts are converted into numerical representations using:
 
 ## 2. Machine Learning Detection
 
-Several baseline classifiers were evaluated:
+The following baseline classifiers were evaluated:
 
 - Logistic Regression
 - Multinomial Naive Bayes
@@ -122,13 +130,13 @@ Several baseline classifiers were evaluated:
 
 ## 3. Rule-Based Detection
 
-The rule engine detects suspicious behaviors including:
+The rule engine identifies suspicious behaviors including:
 
 - Instruction override attempts
-- System prompt extraction
+- System prompt extraction attempts
 - Jailbreak patterns
 - Role manipulation
-- Secret/API key requests
+- Sensitive information requests
 - Multilingual injection patterns
 
 
@@ -136,14 +144,16 @@ The rule engine detects suspicious behaviors including:
 
 The final framework combines:
 
-ML Prediction
+
+Machine Learning Prediction
 +
-Rule Evidence
+Rule-Based Evidence
 |
 v
-Hybrid Decision
+Hybrid Decision Layer
 
-Final decisions:
+
+Final security decisions:
 
 - ALLOW
 - REVIEW
@@ -153,7 +163,8 @@ Final decisions:
 
 # Experimental Results
 
-## Baseline Model Evaluation (5-Fold Cross Validation)
+## Baseline Model Evaluation
+### 5-Fold Cross Validation
 
 | Model | Accuracy | Precision | Recall | F1 Score |
 |------|---------:|----------:|-------:|---------:|
@@ -166,7 +177,7 @@ Final decisions:
 
 # Hybrid Defense Performance
 
-## Hybrid Proper Cross Validation
+## Hybrid Cross Validation
 
 | Metric | Score |
 |--------|------:|
@@ -189,16 +200,19 @@ Evaluation performed on unseen test data:
 | F1 Score | 0.9091 |
 
 Confusion Matrix:
+
+
 True Negative : 48
 False Positive : 1
 False Negative : 1
 True Positive : 10
 
+
 ---
 
 # Explainability Module
 
-PromptShield-AI provides human-readable explanations for every decision.
+PromptShield-AI provides human-readable explanations behind each security decision.
 
 Example:
 
@@ -216,72 +230,74 @@ Decision:
 BLOCK
 
 Evidence:
-
 Strong rule patterns detected:
-ignore_previous, system_prompt
+
+ignore_previous
+system_prompt
+
 Contextual patterns detected:
+
 english_override
-SVM decision score:
+
+ML Decision Score:
 0.0155
 
-ML Confidence:
-Low
-
 Reason:
-Multiple suspicious indicators suggest
-a prompt injection attempt.
+Multiple suspicious indicators suggest a prompt injection attempt.
 
 
-The explanation layer improves transparency by showing why a prompt was classified as malicious.
+The explanation module improves transparency by providing rule evidence, ML prediction scores, and security reasoning.
 
 ---
 
-# Project Structure
+# API Deployment
 
+PromptShield-AI provides a FastAPI-based inference API.
 
+## Run locally
+
+```bash
+uvicorn deployment.app:app --reload
+API Documentation
+http://127.0.0.1:8000/docs
+Available Endpoints
+Method	Endpoint	Description
+GET	/	Project status
+GET	/health	Health check
+POST	/predict	Prompt injection detection
+Project Structure
 PromptShield-AI/
 
-│
 ├── data/
-│ ├── raw/
-│ └── processed/
-│
+│   ├── raw/
+│   └── processed/
+
 ├── models_saved/
-│ ├── best_prompt_model.pkl
-│ └── tfidf_vectorizer.pkl
-│
+│   ├── best_prompt_model.pkl
+│   └── tfidf_vectorizer.pkl
+
 ├── notebooks/
-│ ├── 01_dataset_exploration.ipynb
-│ ├── 02_prompt_filter_testing.ipynb
-│ └── 03_baseline_model_training.ipynb
-│
+│   ├── 01_dataset_exploration.ipynb
+│   ├── 02_prompt_filter_testing.ipynb
+│   └── 03_baseline_model_training.ipynb
+
 ├── src/
-│ ├── features/
-│ │ └── tfidf_features.py
-│ │
-│ ├── models/
-│ │ ├── baseline_models.py
-│ │ └── train_svm.py
-│ │
-│ ├── defense/
-│ │ ├── prompt_filter.py
-│ │ └── hybrid_defense_v2.py
-│ │
-│ ├── evaluation/
-│ │
-│ └── explainability/
-│ └── explanation.py
-│
+│   ├── features/
+│   ├── models/
+│   ├── defense/
+│   ├── evaluation/
+│   └── explainability/
+
+├── deployment/
+│   └── app.py
+
+├── tests/
+
 └── experiments/
-
-
----
-
-# Installation
+Installation
 
 Clone repository:
 
-```bash
 git clone https://github.com/Mufsina/PromptShield-AI.git
 
 cd PromptShield-AI
@@ -305,7 +321,7 @@ Train SVM model:
 
 python src/models/train_svm.py
 
-Run cross-validation:
+Run cross validation:
 
 python src/evaluation/cross_validation.py
 
@@ -318,47 +334,46 @@ Run explainability test:
 python test_explainability.py
 Research Contribution
 
-PromptShield-AI contributes:
+PromptShield-AI demonstrates a hybrid security approach combining machine learning classification with deterministic security rules for prompt injection detection.
 
-An explainable hybrid architecture for prompt injection detection
-Combination of ML classification and security rules
-Context-aware and multilingual attack pattern detection
-Transparent decision explanations
+The framework contributes:
+
+Hybrid ML and rule-based detection architecture
+Explainable security decisions
+Context-aware attack pattern analysis
+Practical FastAPI deployment for inference
+Limitations
+Current evaluation dataset size is limited.
+Transformer-based models are not included in the current prototype.
+Indirect prompt injection detection is evaluated through simulated scenarios rather than a complete production RAG pipeline.
+Explainability currently uses rule evidence and model scores.
 Future Work
 
 Future improvements include:
 
+Transformer-based models such as BERT, RoBERTa, and DeBERTa
 Larger multilingual prompt injection datasets
-Transformer-based classifiers
-More advanced semantic detection
-Improved indirect prompt injection detection
-Retrieval-aware attack detection
+Real RAG pipeline integration
 LLM-based secondary verification
-More extensive adversarial testing
-Production-scale API deployment
+SHAP/LIME based explainability
+Advanced semantic attack detection
 Real-time monitoring and logging
-Expanded explainability methods
-Research Contribution
+Project Status
 
-PromptShield-AI demonstrates how a hybrid approach can combine deterministic security rules with machine-learning classification to improve prompt injection detection.
+Current Version: Hybrid Defense V2
 
-The final Hybrid Defense V2 achieved an F1 score of 90.91% and 96.67% accuracy on the evaluated test set, outperforming the standalone SVM + TF-IDF baseline.
+Completed:
 
-The framework also emphasizes explainability by exposing the signals contributing to each security decision.
+✅ Dataset preparation
+✅ Baseline ML evaluation
+✅ Rule-based detection
+✅ Hybrid defense layer
+✅ Explainability module
+✅ FastAPI deployment
+✅ API testing
+✅ GitHub Actions CI
 
-Status
+In Progress:
 
-Research Prototype — Hybrid Defense V2
-
-Current status:
-
-Dataset preparation: Complete
-Baseline ML model: Complete
-Rule-based detector: Complete
-Hybrid Defense V2: Complete
-Error analysis: Complete
-Final evaluation: Complete
-FastAPI deployment: Complete
-API tests: Complete
-GitHub Actions CI: Complete
-Research documentation: In progress
+Research documentation
+Extended evaluation
