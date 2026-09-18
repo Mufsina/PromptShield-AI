@@ -22,8 +22,16 @@ Thumbs.db
 data/raw/
 data/processed/
 
-# Saved models
-models_saved/
+# Saved models (ignore large artifacts)
+models_saved/**/*.joblib
+
+# Keep PromptShield deployment models
+!models_saved/
+!models_saved/best_prompt_model.pkl
+!models_saved/tfidf_vectorizer.pkl
+!models_saved/rag/
+!models_saved/rag/faiss.index
+!models_saved/rag/documents.pkl
 
 # Experiments and results
 experiments/
