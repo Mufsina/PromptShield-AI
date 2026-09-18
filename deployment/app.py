@@ -64,6 +64,7 @@ def health():
 
     return {
         "status": "healthy",
+        "model": "Hybrid Defense V2",
         "components": {
             "retriever": "active",
             "rag_security": "active",

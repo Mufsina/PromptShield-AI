@@ -15,7 +15,8 @@ def test_health():
     data = response.json()
 
     assert data["status"] == "healthy"
-    assert data["model"] == "Hybrid Defense V2"
+    assert "components" in data
+    assert data["components"]["hybrid_defense"] == "active"
 
 
 
